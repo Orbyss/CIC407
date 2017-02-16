@@ -10,4 +10,6 @@ public class add_memory_text extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_memory_text);
     }
+
+
 }
