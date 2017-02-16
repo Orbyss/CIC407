@@ -17,7 +17,7 @@ package com.example.curtis.memorymaker;
 
 public class add_memory_image extends AppCompatActivity {
     private static int SELECT_PICTURE = 1;
-    private static int PICK_Camera_IMAGE = 1;
+    private static int REQUEST_IMAGE_CAPTURE = 1;
     private String selectedImagePath;
     File destination;
 
@@ -27,7 +27,15 @@ public class add_memory_image extends AppCompatActivity {
         setContentView(R.layout.activity_add_memory_image);
 
 
+        FloatingActionButton addTxtFab = (FloatingActionButton) findViewById(R.id.btn_continue_mem_txt);
+        addTxtFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+                Intent intent = new Intent(v.getContext(), add_memory_text.class);;
+                startActivity(intent);
+
+            }
+        });
 
 
     }
@@ -44,10 +52,8 @@ public class add_memory_image extends AppCompatActivity {
 
     public void loadImagefromCamera(View view) {
 
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                Uri.fromFile(destination));
-        startActivityForResult(intent, PICK_Camera_IMAGE);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivity(takePictureIntent);
     }
 
     @Override
@@ -81,9 +87,10 @@ public class add_memory_image extends AppCompatActivity {
                     .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             String path = cursor.getString(column_index);
-            cursor.close();
             return path;
         }
+
+        cursor.close();
         // this is our fallback here
         return uri.getPath();
     }

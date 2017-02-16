@@ -40,6 +40,7 @@ public class MainMenu extends AppCompatActivity
         newMemFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+
                 Intent intent = new Intent(v.getContext(), add_memory_image.class);;
                 startActivity(intent);
 
@@ -50,7 +51,8 @@ public class MainMenu extends AppCompatActivity
         viewMemFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
+                Intent intent = new Intent(v.getContext(), ViewMemories.class);;
+                startActivity(intent);
 
             }
         });
