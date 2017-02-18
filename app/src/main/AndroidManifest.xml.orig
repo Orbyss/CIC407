@@ -26,10 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".add_memory_image" />
+<<<<<<< HEAD
         <activity android:name=".add_memory_text"/>
-        <activity android:name=".SettingsOptions"/>
-        <activity android:name=".ViewMemories">
+        <activity android:name=".SettingsOptions">
         </activity>
+=======
+        <activity android:name=".add_memory_text" />
+        <activity android:name=".ViewMemories"></activity>
+>>>>>>> 94b940359420fb95cbd6d070bef7463349f8c10d
     </application>
 
 </manifest>
