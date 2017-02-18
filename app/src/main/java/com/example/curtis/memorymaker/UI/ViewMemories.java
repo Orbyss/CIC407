@@ -1,7 +1,9 @@
-package com.example.curtis.memorymaker;
+package com.example.curtis.memorymaker.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.curtis.memorymaker.R;
 
 public class ViewMemories extends AppCompatActivity {
 
@@ -9,8 +11,5 @@ public class ViewMemories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_memories);
-
-
-
     }
 }

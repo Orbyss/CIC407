@@ -8,6 +8,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -16,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenu"
+            android:name=".UI.MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,9 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".add_memory_image" />
-        <activity android:name=".add_memory_text" />
-        <activity android:name=".ViewMemories"></activity>
+        <activity android:name=".UI.AddMemoryImage" />
+        <activity android:name=".UI.AddMemoryText" />
+        <activity android:name=".UI.ViewMemories"></activity>
     </application>
 
 </manifest>
