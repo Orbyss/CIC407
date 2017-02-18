@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".add_memory_image" />
-        <activity android:name=".add_memory_text"></activity>
+        <activity android:name=".add_memory_text"/>
+        <activity android:name=".SettingsOptions">
+        </activity>
     </application>
 
 </manifest>

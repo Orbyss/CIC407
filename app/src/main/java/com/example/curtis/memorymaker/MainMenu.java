@@ -1,6 +1,7 @@
 package com.example.curtis.memorymaker;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.design.widget.FloatingActionButton;
@@ -53,8 +54,10 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_settings) {
-
+        if (id == R.id.nav_settings)
+        {
+            Intent intent = new Intent(getBaseContext(), SettingsOptions.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_facebook) {
 
