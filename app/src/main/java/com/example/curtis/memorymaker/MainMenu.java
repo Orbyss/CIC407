@@ -55,6 +55,7 @@ public class MainMenu extends AppCompatActivity
 
         if (id == R.id.nav_settings) {
 
+
         } else if (id == R.id.nav_facebook) {
 
         } else if (id == R.id.nav_logout) {
