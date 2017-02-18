@@ -1,4 +1,4 @@
-package com.example.curtis.memorymaker.UI;
+package com.example.curtis.memorymaker.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.curtis.memorymaker.R;
+import com.example.curtis.memorymaker.ui.mdviewmem.MemoryListActivity;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,23 +35,20 @@ public class MainMenu extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FloatingActionButton newMemFab = (FloatingActionButton) findViewById(R.id.btn_add_new_memory);
+
         newMemFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(v.getContext(), AddMemoryImage.class);;
                 startActivity(intent);
-
             }
         });
 
         FloatingActionButton viewMemFab = (FloatingActionButton) findViewById(R.id.btn_view_memories);
+
         viewMemFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), ViewMemories.class);;
+                Intent intent = new Intent(v.getContext(), MemoryListActivity.class);;
                 startActivity(intent);
-
             }
         });
 

@@ -1,7 +1,14 @@
-package com.example.curtis.memorymaker.Models;
+package com.example.curtis.memorymaker.models;
 
 import android.graphics.Bitmap;
 import android.location.Location;
+
+import com.example.curtis.memorymaker.MemDatabase;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.data.Blob;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.io.Serializable;
 
@@ -9,14 +16,19 @@ import java.io.Serializable;
  * Created by Ian on 2/17/2017.
  */
 
-public class Memory implements Serializable {
-
+@Table(database = MemDatabase.class)
+public class Memory extends BaseModel implements Serializable {
+    @Column
+    @PrimaryKey
     private String id;
+    @Column
     private String description;
-    private transient Bitmap image;
-    private Location location;
+    @Column
+    private transient Blob image;
+    @Column
+    private String location;
 
-    public Memory(String id, Bitmap image, String description, Location location) {
+    public Memory(String id, Blob image, String description, String location) {
         this.id = id;
         this.image = image;
         this.description = description;
@@ -45,19 +57,19 @@ public class Memory implements Serializable {
         this.description = description;
     }
 
-    public Bitmap getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 }

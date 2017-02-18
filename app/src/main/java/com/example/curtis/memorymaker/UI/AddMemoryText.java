@@ -1,4 +1,4 @@
-package com.example.curtis.memorymaker.UI;
+package com.example.curtis.memorymaker.ui;
 
 import android.Manifest;
 import android.content.Intent;
@@ -17,16 +17,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.curtis.memorymaker.Models.Memory;
+import com.example.curtis.memorymaker.business.Helper;
+import com.example.curtis.memorymaker.models.Memory;
 import com.example.curtis.memorymaker.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-
-import org.w3c.dom.Text;
+import com.raizlabs.android.dbflow.data.Blob;
 
 import java.io.IOException;
-import java.net.URI;
 
 public class AddMemoryText extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -103,23 +102,27 @@ public class AddMemoryText extends AppCompatActivity implements
             Log.d("Connect fail result: ", connectionResult.getErrorMessage());
     }
 
-    public void storeMemory(View view){
-        mMemory.setLocation(mLastLocation);
+    public void storeMemory(View view) {
+        mMemory.setLocation(mLastLocation.toString());
         mMemory.setDescription(txtInputMemory.getText().toString());
 
         Uri imageUri = Uri.parse(mMemory.getId());
 
+        //                Bitmap imageBitmap = ((BitmapDrawable)imgView.getDrawable()).getBitmap();
+//                mMemory = new Memory(selectedImageUri.toString(), new Blob(Helper.getImageAsByteArray(imageBitmap)), null, null);
+
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-            mMemory.setImage(bitmap);
+            mMemory.setImage(new Blob(Helper.getImageAsByteArray(bitmap)));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        mMemory.save();
+
         Intent intent = new Intent(getApplicationContext(), MainMenu.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-
     }
 
 /**

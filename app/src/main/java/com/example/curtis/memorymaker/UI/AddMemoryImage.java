@@ -1,22 +1,23 @@
-package com.example.curtis.memorymaker.UI;
+package com.example.curtis.memorymaker.ui;
 
         import android.content.Intent;
         import android.database.Cursor;
+        import android.graphics.Bitmap;
         import android.graphics.drawable.BitmapDrawable;
         import android.net.Uri;
         import android.os.Bundle;
         import android.provider.MediaStore;
         import android.support.design.widget.FloatingActionButton;
         import android.support.v7.app.AppCompatActivity;
-        import android.util.Log;
         import android.view.View;
         import android.widget.ImageView;
 
-        import com.example.curtis.memorymaker.Models.Memory;
+        import com.example.curtis.memorymaker.business.Helper;
+        import com.example.curtis.memorymaker.models.Memory;
         import com.example.curtis.memorymaker.R;
+        import com.raizlabs.android.dbflow.data.Blob;
 
         import java.io.File;
-        import java.io.IOException;
 
 public class AddMemoryImage extends AppCompatActivity {
     private static int SELECT_PICTURE = 1;
@@ -67,7 +68,10 @@ public class AddMemoryImage extends AppCompatActivity {
                 // Set the Image in ImageView after decoding the String
                 imgView.setImageURI(selectedImageUri);
 
-                mMemory = new Memory(selectedImageUri.toString(), null, null, null);
+//                Bitmap imageBitmap = ((BitmapDrawable)imgView.getDrawable()).getBitmap();
+//                mMemory = new Memory(selectedImageUri.toString(), new Blob(Helper.getImageAsByteArray(imageBitmap)), null, null);
+                mMemory = new Memory();
+                mMemory.setId(selectedImageUri.toString());
             }
         }
     }

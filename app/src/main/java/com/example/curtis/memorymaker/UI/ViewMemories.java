@@ -1,4 +1,4 @@
-package com.example.curtis.memorymaker.UI;
+package com.example.curtis.memorymaker.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

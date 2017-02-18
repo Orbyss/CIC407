@@ -13,4 +13,6 @@
     <string name="Nav2">Connect to Facebook</string>
 
     <string name="Nav3">Logout</string>
+    <string name="title_memory_list">Memories</string>
+    <string name="title_memory_detail">Memory Detail</string>
 </resources>
