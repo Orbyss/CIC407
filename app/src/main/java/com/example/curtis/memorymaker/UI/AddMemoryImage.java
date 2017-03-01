@@ -1,9 +1,9 @@
-package com.example.curtis.memorymaker;
+package com.example.curtis.memorymaker.ui;
 
-        import android.app.Activity;
         import android.content.Intent;
         import android.database.Cursor;
-        import android.graphics.BitmapFactory;
+        import android.graphics.Bitmap;
+        import android.graphics.drawable.BitmapDrawable;
         import android.net.Uri;
         import android.os.Bundle;
         import android.provider.MediaStore;
@@ -11,35 +11,37 @@ package com.example.curtis.memorymaker;
         import android.support.v7.app.AppCompatActivity;
         import android.view.View;
         import android.widget.ImageView;
-        import android.widget.Toast;
+
+        import com.example.curtis.memorymaker.business.Helper;
+        import com.example.curtis.memorymaker.models.Memory;
+        import com.example.curtis.memorymaker.R;
+        import com.raizlabs.android.dbflow.data.Blob;
 
         import java.io.File;
 
-public class add_memory_image extends AppCompatActivity {
+public class AddMemoryImage extends AppCompatActivity {
     private static int SELECT_PICTURE = 1;
     private static int REQUEST_IMAGE_CAPTURE = 1;
-    private String selectedImagePath;
-    File destination;
+
+    private Memory mMemory;
+    private String mSelectedImagePath;
+    File mDestination;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_memory_image);
 
-
         FloatingActionButton addTxtFab = (FloatingActionButton) findViewById(R.id.btn_continue_mem_txt);
+
         addTxtFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), add_memory_text.class);;
+                Intent intent = new Intent(getBaseContext(), AddMemoryText.class);
+                intent.putExtra("MemoryData", mMemory);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
 
     public void loadImagefromGallery(View view) {
         // Create intent to Open Image applications like Gallery, Google Photos
@@ -51,7 +53,6 @@ public class add_memory_image extends AppCompatActivity {
     }
 
     public void loadImagefromCamera(View view) {
-
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivity(takePictureIntent);
     }
@@ -61,16 +62,19 @@ public class add_memory_image extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
-                selectedImagePath = getPath(selectedImageUri);
+                mSelectedImagePath = getPath(selectedImageUri);
 
                 ImageView imgView = (ImageView) findViewById(R.id.pic_new_memory);
                 // Set the Image in ImageView after decoding the String
                 imgView.setImageURI(selectedImageUri);
+
+//                Bitmap imageBitmap = ((BitmapDrawable)imgView.getDrawable()).getBitmap();
+//                mMemory = new Memory(selectedImageUri.toString(), new Blob(Helper.getImageAsByteArray(imageBitmap)), null, null);
+                mMemory = new Memory();
+                mMemory.setId(selectedImageUri.toString());
             }
         }
     }
-
-
 
     public String getPath(Uri uri) {
         // just some safety built in
