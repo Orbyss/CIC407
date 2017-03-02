@@ -27,12 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".add_memory_image" />
-        <activity android:name=".add_memory_text"/>
+
         <activity android:name=".SettingsOptions"/>
-        <activity android:name=".ViewMemories">
-=======
+
         <activity android:name=".ui.AddMemoryImage" />
         <activity android:name=".ui.AddMemoryText" />
         <activity android:name=".ui.ViewMemories" />

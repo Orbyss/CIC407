@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.curtis.memorymaker.R;
+import com.example.curtis.memorymaker.SettingsOptions;
 import com.example.curtis.memorymaker.ui.mdviewmem.MemoryListActivity;
 
 public class MainMenu extends AppCompatActivity
