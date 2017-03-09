@@ -13,4 +13,6 @@
     <string name="Nav2">Connect to Facebook</string>
 
     <string name="Nav3">Logout</string>
+
+    <string name="facebook_app_id">255867698156545</string>
 </resources>
