@@ -2,10 +2,15 @@ package com.example.curtis.memorymaker;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +21,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import com.facebook.FacebookSdk;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -23,6 +32,24 @@ public class MainMenu extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.example.curtis.memorymaker",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+
+
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -78,9 +105,14 @@ public class MainMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_settings) {
+        if (id == R.id.nav_settings)
+        {
+            Intent intent = new Intent(getBaseContext(), SettingsOptions.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_facebook) {
+            Intent intent = new Intent(getBaseContext(), FacebookLogin.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
 
